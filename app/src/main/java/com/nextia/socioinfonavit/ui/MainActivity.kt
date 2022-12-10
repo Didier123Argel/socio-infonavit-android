@@ -21,11 +21,6 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
     private var mListener : ((MenuTags) -> Unit)? = null
     private lateinit var binding: ActivityMainBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setUpViews()
-    }
-
     override fun setBinding(@LayoutRes layoutId: Int) {
         binding = DataBindingUtil.setContentView(this, layoutId)
         binding.apply {
@@ -49,10 +44,6 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
             }
             includeMenu.tvLogOut.setOnClickListener { mListener?.invoke(MenuTags.ITEM_LOGOUT) }
         }
-    }
-
-    private fun setUpViews() {
-
     }
 
     fun setItemMenuTapped(listener: ((MenuTags) -> Unit)?) {

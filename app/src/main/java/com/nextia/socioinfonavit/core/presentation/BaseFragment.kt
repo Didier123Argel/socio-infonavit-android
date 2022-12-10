@@ -73,4 +73,11 @@ abstract class BaseFragment(@LayoutRes layoutId: Int) : Fragment(layoutId), OnFa
     open fun showLoader(show: Boolean) {
         (activity as? MainActivity)?.showProgress(show)
     }
+
+    open fun isEnabledDrawer(enable: Boolean) {
+        (baseActivity as? MainActivity)?.isEnabledDrawer(enable)
+    }
+
+    open fun showToolbar(show: Boolean) {
+    }
 }
