@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tvNamePurse"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        tools:text="Purse"
+        android:background="@color/white"
+        android:layout_margin="@dimen/wallet_header_default_margin_size"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:orientation="horizontal"
+        app:layout_constraintHeight_percent=".78"
+        android:layout_margin="@dimen/purse_default_margin_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvNamePurse">
+        <LinearLayout
+            android:id="@+id/rvPurchase"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <include
+                android:id="@+id/shimmerOne"
+                layout="@layout/item_shimmer_benevit_locked"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/shimmerTwo"/>
+
+            <include
+                android:id="@+id/shimmerTwo"
+                layout="@layout/item_shimmer_benevit_locked"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/shimmerOne"/>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

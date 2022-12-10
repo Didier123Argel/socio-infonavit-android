@@ -4,8 +4,10 @@ import com.nextia.socioinfonavit.core.exception.Failure
 import com.nextia.socioinfonavit.core.functional.Either
 import com.nextia.socioinfonavit.core.helpers.Authenticator
 import com.nextia.socioinfonavit.core.plataform.NetworkHandler
+import com.nextia.socioinfonavit.data.dto.BenevitResponse
 import com.nextia.socioinfonavit.data.dto.LoginRequest
 import com.nextia.socioinfonavit.data.dto.UserResponse
+import com.nextia.socioinfonavit.data.dto.Wallet
 import com.nextia.socioinfonavit.domain.apis.UserApi
 import com.nextia.socioinfonavit.domain.repositories.UserRepository
 import com.nextia.socioinfonavit.framework.api.ApiRequest
@@ -43,6 +45,36 @@ private val authenticator: Authenticator
                         authenticator.clear()
                     },
                     Unit
+                )
+            }
+            false, null -> Either.Left(Failure.NetworkConnection)
+        }
+    }
+
+    override fun getWallets(): Either<Failure, List<Wallet>> {
+        return when (networkHandler.isConnected) {
+            true -> {
+                makeRequest(
+                    userApi.getWallets(),
+                    {wallets ->
+                        wallets
+                    },
+                    emptyList()
+                )
+            }
+            false, null -> Either.Left(Failure.NetworkConnection)
+        }
+    }
+
+    override fun getBenevits(): Either<Failure, BenevitResponse> {
+        return when (networkHandler.isConnected) {
+            true -> {
+                makeRequest(
+                    userApi.getBenevits(),
+                    { benevits ->
+                        benevits
+                    },
+                    BenevitResponse.empty()
                 )
             }
             false, null -> Either.Left(Failure.NetworkConnection)

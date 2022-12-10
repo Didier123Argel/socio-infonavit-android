@@ -36,6 +36,7 @@ class LaunchFragment : BaseFragment(R.layout.fragment_launch) {
     }
 
     override fun setBinding(view: View) {
+        binding = FragmentLaunchBinding.bind(view)
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
 

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="benevit"
+            type="com.nextia.socioinfonavit.data.dto.Benevit" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp"
+            app:layout_constraintDimensionRatio="H, 1:1.2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/ivHeaderBenefitUnLocked"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@string/description_your_benevit"
+                    app:layout_constraintBottom_toTopOf="@id/mbtnIWant"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@tools:sample/avatars"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/mbtnIWant"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="@dimen/btn_item_default_margin_size"
+                    android:text="@string/txt_i_want"
+                    android:textSize="12sp"
+                    app:backgroundTint="@color/red"
+                    android:textColor="@color/white"
+                    app:cornerRadius="8dp"
+                    app:layout_constraintVertical_bias="1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivHeaderBenefitUnLocked" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

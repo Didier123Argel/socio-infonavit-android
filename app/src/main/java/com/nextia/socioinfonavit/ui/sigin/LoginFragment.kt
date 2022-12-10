@@ -26,20 +26,21 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     }
 
     override fun setBinding(view: View) {
+        binding = FragmentLoginBinding.bind(view)
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
 
             mBtnLogin.setOnClickListener {
                 hideKeyboard()
-                viewModel.onTappedLogin()
+                this@LoginFragment.viewModel.onTappedLogin()
             }
-            binding.etEmail.addTextChangedListener { viewModel.onKeysChanged() }
-            binding.etPassword.addTextChangedListener { viewModel.onKeysChanged() }
+            binding.etEmail.addTextChangedListener { this@LoginFragment.viewModel.onKeysChanged() }
+            binding.etPassword.addTextChangedListener { this@LoginFragment.viewModel.onKeysChanged() }
             binding.etPassword.setOnEditorActionListener { _, actionId, _ ->
                 val result: Int = actionId and EditorInfo.IME_MASK_ACTION
                 if (result == EditorInfo.IME_ACTION_DONE){
                     hideKeyboard()
-                    viewModel.onTappedLogin()
+                    this@LoginFragment.viewModel.onTappedLogin()
                 }
                 true
             }

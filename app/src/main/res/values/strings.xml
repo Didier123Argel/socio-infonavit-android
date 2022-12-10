@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--APP NAME-->
     <string name="app_name">Socio Infonavit Android</string>
 
-    //DIALOG
+    <!--DIALOG-->
     <string name="option_accept">Aceptar</string>
     <string name="option_cancel">Cancelar</string>
     <string name="title_error_logout">Usuario y contraseña incorrectos</string>
     <string name="message_error_logout">Ingrese nuevamente</string>
+    <string name="confirm_dialog_logout">¿Esta seguro que desea cerrar sesión?</string>
 
-    //MAIN
+    <!--MAIN-->
     <string name="txt_welcome">Bienvenido</string>
     <string name="logout">Cerrar sesión</string>
     <string name="error_connection">Error de conexión</string>
 
-    //LOGIN
+    <!--LOGIN-->
     <string name="txt_email">Correo</string>
     <string name="txt_password">Contraseña</string>
     <string name="txt_forgot_my_password">Olvide mi contraseña</string>
@@ -23,12 +25,24 @@
     <string name="txt_email_invalid">Ingrese un correo valido.</string>
     <string name="txt_empty_password">Ingrese una contraseña.</string>
 
-    //DRAWER
+    <!--HOME-->
+    <string name="txt_i_want">LO QUIERO</string>
+
+    <!--DRAWER-->
     <string name="drawer_opened" translatable="false">Opened</string>
     <string name="drawer_closed" translatable="false">Closed</string>
 
-    //DESCRIPTIONS
+    <!--DESCRIPTIONS-->
     <string name="description_logo_splash">Logo Splash</string>
     <string name="description_logo_login">Logo login</string>
+    <string name="description_your_benevit">Your Benevit</string>
+    <string name="description_shimmer">Shimmer</string>
+
+    <!--MARKER PLURALS-->
+    <plurals name="plural_expire_date">
+        <item quantity="one">Vence en %d dia</item>
+        <item quantity="other">Vence en %d dias</item>
+    </plurals>
+
 
 </resources>
