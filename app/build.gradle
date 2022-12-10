@@ -38,6 +38,8 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.databinding:databinding-runtime:7.3.1'
+
 
     // VERSION LIFECYCLE
     def lifecycle_version = "2.5.1"
