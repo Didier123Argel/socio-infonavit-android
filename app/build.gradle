@@ -1,6 +1,8 @@
 plugins {
+    id 'kotlin-kapt'
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -30,9 +32,22 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
+
+    // VERSION LIFECYCLE
+    def lifecycle_version = "2.5.1"
+
+    // VERSION ACTIVITY AND FRAGMENT
+    def activity_version = "1.6.1"
+    def fragment_version = "1.5.5"
+
+    //VERSION NAVIGATION COMPONENTS
+    def nav_version = "2.5.3"
 
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
@@ -40,4 +55,55 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+
+    //RETROFIT
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    //OKHTTP3 INTERCEPTOR
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.3'
+
+    //GOOGLE JSON
+    implementation 'com.google.code.gson:gson:2.9.0'
+
+    //HILT
+    implementation 'com.google.dagger:hilt-android:2.44'
+    kapt 'com.google.dagger:hilt-android-compiler:2.44'
+
+    //VIEW MODEL
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
+
+    //LIVEDATA
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
+
+    //PROCESS
+    implementation ("androidx.lifecycle:lifecycle-process:2.5.1")
+
+    //EXTENSIONS
+    implementation "androidx.activity:activity-ktx:$activity_version"
+    implementation "androidx.fragment:fragment-ktx:$fragment_version"
+
+    //JWT
+    implementation 'com.auth0.android:jwtdecode:2.0.0'
+
+    //NAVIGATION COMPONENTS
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
+    //K PROGRESS HUD
+    implementation 'com.kaopiz:kprogresshud:1.2.0'
+
+    //LOAD IMAGE FRESCO
+    implementation 'com.facebook.fresco:fresco:2.6.0'
+
+    //GLIDE
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+
+    //SKELETON
+    implementation 'com.facebook.shimmer:shimmer:0.5.0@aar'
+}
+
+kapt {
+    correctErrorTypes = true
 }
