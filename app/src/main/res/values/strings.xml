@@ -2,9 +2,16 @@
 <resources>
     <string name="app_name">Socio Infonavit Android</string>
 
-    //TEXT
+    //DIALOG
+    <string name="option_accept">Aceptar</string>
+    <string name="option_cancel">Cancelar</string>
+    <string name="title_error_logout">Usuario y contraseña incorrectos</string>
+    <string name="message_error_logout">Ingrese nuevamente</string>
+
+    //MAIN
     <string name="txt_welcome">Bienvenido</string>
     <string name="logout">Cerrar sesión</string>
+    <string name="error_connection">Error de conexión</string>
 
     //DRAWER
     <string name="drawer_opened" translatable="false">Opened</string>
