@@ -1,6 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/graph_main">
-
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/graph_main"
+    app:startDestination="@id/launchFragment">
+    <fragment
+        android:id="@+id/launchFragment"
+        android:name="com.nextia.socioinfonavit.ui.launch.LaunchFragment"
+        android:label="fragment_launch"
+        tools:layout="@layout/fragment_launch" >
+        <action
+            android:id="@+id/action_launchFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/launchFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_launchFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/launchFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.nextia.socioinfonavit.ui.sigin.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.nextia.socioinfonavit.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

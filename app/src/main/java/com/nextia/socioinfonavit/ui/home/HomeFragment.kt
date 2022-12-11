@@ -33,14 +33,18 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         binding = FragmentHomeBinding.bind(view)
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
+            rvWallets.adapter = walletsAdapter
+            walletsAdapter.listItems = viewModel.mWallets
+            splWallets.setOnRefreshListener {
+                splWallets.isRefreshing = false
+                viewModel.getWallets()
+            }
         }
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setUpView()
+        showToolbar(true)
+        (baseActivity as? MainActivity)?.setItemMenuTapped {onMenuTapped(it)}
+        isEnabledDrawer(true)
     }
-
 
     private fun onMenuTapped(item: MainActivity.MenuTags){
         when(item){
@@ -62,18 +66,6 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         )
     }
 
-    private fun setUpView(){
-        showToolbar(true)
-        (baseActivity as? MainActivity)?.setItemMenuTapped {onMenuTapped(it)}
-        binding.rvWallets.adapter = walletsAdapter
-        walletsAdapter.listItems = viewModel.mWallets
-        binding.splWallets.setOnRefreshListener {
-            binding.splWallets.isRefreshing = false
-            viewModel.getWallets()
-        }
-        isEnabledDrawer(true)
-    }
-
     @SuppressLint("NotifyDataSetChanged")
     private fun onStateViewChanged(viewState: HomeViewState?) {
         when(viewState) {
@@ -88,7 +80,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
             is HomeViewState.SuccessLogout ->{
                 (activity as? MainActivity)?.showDrawer(false)
-                //navController.navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
+                navController.navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
             }
             else -> {}
         }

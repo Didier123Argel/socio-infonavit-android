@@ -3,6 +3,7 @@ package com.nextia.socioinfonavit.core.presentation
 import android.content.Context
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.util.AttributeSet
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.LayoutRes
@@ -10,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 
 abstract class BaseActivity(@LayoutRes val layoutId: Int) : AppCompatActivity(layoutId){
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setBinding(layoutId)
     }
 

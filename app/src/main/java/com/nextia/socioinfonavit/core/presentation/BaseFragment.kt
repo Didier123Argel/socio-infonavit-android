@@ -13,7 +13,7 @@ import com.nextia.socioinfonavit.core.utils.OnFailure
 import com.nextia.socioinfonavit.ui.MainActivity
 import com.nextia.socioinfonavit.ui.customdialogs.CustomAlertDialog
 
-abstract class BaseFragment(@LayoutRes layoutId: Int) : Fragment(layoutId), OnFailure {
+abstract class BaseFragment(@LayoutRes val layoutId: Int) : Fragment(layoutId), OnFailure {
     val navController by lazy { findNavController() }
     val baseActivity by lazy { requireActivity() as BaseActivity }
 

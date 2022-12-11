@@ -1,6 +1,5 @@
 package com.nextia.socioinfonavit.ui
 
-import android.os.Bundle
 import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -23,12 +22,14 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
 
     override fun setBinding(@LayoutRes layoutId: Int) {
         binding = DataBindingUtil.setContentView(this, layoutId)
+        binding = DataBindingUtil.setContentView(this, layoutId)
         binding.apply {
             lifecycleOwner = this@MainActivity
 
             drawerLayout.closeDrawer(mainNavViewStart)
             actionBarDrawerToggle =
-                object : ActionBarDrawerToggle(this@MainActivity, drawerLayout, R.string.drawer_opened, R.string.drawer_closed) {
+                object : ActionBarDrawerToggle(this@MainActivity,
+                    drawerLayout, R.string.drawer_opened, R.string.drawer_closed) {
                     override fun onDrawerOpened(drawerView: View) {
                         super.onDrawerOpened(drawerView)
                         invalidateOptionsMenu()

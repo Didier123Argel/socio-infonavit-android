@@ -1,10 +1,9 @@
 package com.nextia.socioinfonavit.ui.launch
 
+import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import com.nextia.socioinfonavit.R
 import com.nextia.socioinfonavit.core.extension.observe
@@ -12,7 +11,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import com.nextia.socioinfonavit.databinding.FragmentLaunchBinding
 import com.nextia.socioinfonavit.core.extension.addTransitionListener
 import com.nextia.socioinfonavit.core.presentation.BaseFragment
-import com.nextia.socioinfonavit.ui.MainActivity
 
 @AndroidEntryPoint
 class LaunchFragment : BaseFragment(R.layout.fragment_launch) {
@@ -27,34 +25,25 @@ class LaunchFragment : BaseFragment(R.layout.fragment_launch) {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_launch, container, false)
-        return binding.root
-    }
-
     override fun setBinding(view: View) {
         binding = FragmentLaunchBinding.bind(view)
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
-
             motionLayoutLaunch.addTransitionListener (onTransitionCompleted = { _, _ ->
-                binding.progressCircularLaunch.visibility = View.VISIBLE
+                progressCircularLaunch.visibility = View.VISIBLE
                 viewModel.validateSession()
             })
-            (activity as? MainActivity)?.isEnabledDrawer(false)
         }
+        isEnabledDrawer(false)
     }
 
     private fun onViewStateChanged(viewState: LaunchViewState?) {
         when(viewState) {
             is LaunchViewState.NavigateToLogin -> {
-                //navController.navigate(LaunchFragmentDirections.actionLaunchFragmentToLoginFragment())
+                navController.navigate(LaunchFragmentDirections.actionLaunchFragmentToLoginFragment())
             }
             is LaunchViewState.NavigateToHome -> {
-                //navController.navigate(LaunchFragmentDirections.actionLaunchFragmentToHomeFragment())
+                navController.navigate(LaunchFragmentDirections.actionLaunchFragmentToHomeFragment())
             }
             else -> {}
         }

@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import com.nextia.socioinfonavit.R
 import com.nextia.socioinfonavit.core.extension.observe
 import com.nextia.socioinfonavit.core.presentation.BaseFragment
+import com.nextia.socioinfonavit.databinding.FragmentHomeBinding
 import com.nextia.socioinfonavit.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,9 +35,9 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                 hideKeyboard()
                 this@LoginFragment.viewModel.onTappedLogin()
             }
-            binding.etEmail.addTextChangedListener { this@LoginFragment.viewModel.onKeysChanged() }
-            binding.etPassword.addTextChangedListener { this@LoginFragment.viewModel.onKeysChanged() }
-            binding.etPassword.setOnEditorActionListener { _, actionId, _ ->
+            etEmail.addTextChangedListener { this@LoginFragment.viewModel.onKeysChanged() }
+            etPassword.addTextChangedListener { this@LoginFragment.viewModel.onKeysChanged() }
+            etPassword.setOnEditorActionListener { _, actionId, _ ->
                 val result: Int = actionId and EditorInfo.IME_MASK_ACTION
                 if (result == EditorInfo.IME_ACTION_DONE){
                     hideKeyboard()
@@ -54,7 +55,9 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             is LoginViewState.EnableLogIn -> enableLogIn(viewState.enable)
             is LoginViewState.EmailInvalid -> notify(getString(R.string.txt_email_invalid))
             is LoginViewState.PasswordEmpty -> notify(getString(R.string.txt_empty_password))
-            //is LoginViewState.GoToHome -> navController.navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
+            is LoginViewState.GoToHome -> {
+                navController.navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
+            }
             is LoginViewState.ShowProgress -> showLoader(viewState.show)
             else -> {}
         }
