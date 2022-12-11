@@ -25,11 +25,9 @@
     </ConstraintSet>
 
     <Transition
-        app:constraintSetEnd="@id/end"
         app:constraintSetStart="@id/start"
+        app:constraintSetEnd="@id/end"
         app:autoTransition="animateToEnd"
-        app:duration="800">
-
-
+        app:duration="300">
     </Transition>
 </MotionScene>

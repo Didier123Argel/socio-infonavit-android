@@ -9,7 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 
-abstract class BaseActivity(@LayoutRes val layoutId: Int) : AppCompatActivity(layoutId){
+abstract class BaseActivity(@LayoutRes val layoutId: Int) : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

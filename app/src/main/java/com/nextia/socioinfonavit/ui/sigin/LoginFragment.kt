@@ -20,6 +20,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setStatusBarColor(R.color.red)
         viewModel.apply {
             observe(loginViewState, ::onViewStateChanged)
             observe(failure, this@LoginFragment::handleFailure)

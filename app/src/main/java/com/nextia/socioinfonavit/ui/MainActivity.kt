@@ -22,7 +22,6 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
 
     override fun setBinding(@LayoutRes layoutId: Int) {
         binding = DataBindingUtil.setContentView(this, layoutId)
-        binding = DataBindingUtil.setContentView(this, layoutId)
         binding.apply {
             lifecycleOwner = this@MainActivity
 

@@ -80,4 +80,8 @@ abstract class BaseFragment(@LayoutRes val layoutId: Int) : Fragment(layoutId), 
 
     open fun showToolbar(show: Boolean) {
     }
+
+    fun setStatusBarColor(color: Int) {
+        baseActivity.window.statusBarColor = resources.getColor(color, null)
+    }
 }

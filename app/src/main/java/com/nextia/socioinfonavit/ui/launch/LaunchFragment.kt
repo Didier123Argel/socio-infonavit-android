@@ -1,9 +1,7 @@
 package com.nextia.socioinfonavit.ui.launch
 
-import android.os.Build
 import android.os.Bundle
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import com.nextia.socioinfonavit.R
 import com.nextia.socioinfonavit.core.extension.observe
@@ -20,6 +18,7 @@ class LaunchFragment : BaseFragment(R.layout.fragment_launch) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setStatusBarColor(R.color.red)
         viewModel.apply {
             observe(launchViewState, ::onViewStateChanged)
         }
