@@ -8,7 +8,6 @@ import androidx.fragment.app.viewModels
 import com.nextia.socioinfonavit.R
 import com.nextia.socioinfonavit.core.extension.observe
 import com.nextia.socioinfonavit.core.presentation.BaseFragment
-import com.nextia.socioinfonavit.databinding.FragmentHomeBinding
 import com.nextia.socioinfonavit.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,6 +16,9 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
 
     private val viewModel by viewModels<LoginViewModel>()
     private lateinit var binding : FragmentLoginBinding
+
+    override fun useAppBar(): Boolean = false
+    override fun useDrawer(): Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +33,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         binding = FragmentLoginBinding.bind(view)
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
+            viewModel = this@LoginFragment.viewModel
 
             mBtnLogin.setOnClickListener {
                 hideKeyboard()
@@ -46,8 +49,6 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                 }
                 true
             }
-            isEnabledDrawer(false)
-            showToolbar(false)
         }
     }
 

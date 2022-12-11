@@ -13,12 +13,22 @@ import com.nextia.socioinfonavit.core.utils.OnFailure
 import com.nextia.socioinfonavit.ui.MainActivity
 import com.nextia.socioinfonavit.ui.customdialogs.CustomAlertDialog
 
+typealias ManuTapListener = ((MainActivity.MenuTags) -> Unit)?
 abstract class BaseFragment(@LayoutRes val layoutId: Int) : Fragment(layoutId), OnFailure {
     val navController by lazy { findNavController() }
     val baseActivity by lazy { requireActivity() as BaseActivity }
 
+    open fun useAppBar() = false
+    open fun useDrawer() = false
+    open fun setMenuTapListener(): ManuTapListener = {}
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        baseActivity.apply {
+            enableAppBar(useAppBar())
+            isEnabledDrawer(useDrawer())
+            setItemMenuListener()
+        }
         setBinding(view)
     }
 
@@ -74,11 +84,12 @@ abstract class BaseFragment(@LayoutRes val layoutId: Int) : Fragment(layoutId), 
         (activity as? MainActivity)?.showProgress(show)
     }
 
-    open fun isEnabledDrawer(enable: Boolean) {
+    private fun isEnabledDrawer(enable: Boolean) {
         (baseActivity as? MainActivity)?.isEnabledDrawer(enable)
     }
 
-    open fun showToolbar(show: Boolean) {
+    private fun setItemMenuListener() {
+        (baseActivity as? MainActivity)?.setItemMenuTapped(setMenuTapListener())
     }
 
     fun setStatusBarColor(color: Int) {

@@ -16,6 +16,9 @@ class LaunchFragment : BaseFragment(R.layout.fragment_launch) {
     private val viewModel by viewModels<LaunchViewModel>()
     private lateinit var binding : FragmentLaunchBinding
 
+    override fun useAppBar(): Boolean = false
+    override fun useDrawer(): Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStatusBarColor(R.color.red)
@@ -33,7 +36,6 @@ class LaunchFragment : BaseFragment(R.layout.fragment_launch) {
                 viewModel.validateSession()
             })
         }
-        isEnabledDrawer(false)
     }
 
     private fun onViewStateChanged(viewState: LaunchViewState?) {

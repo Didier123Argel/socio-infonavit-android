@@ -8,6 +8,7 @@ import com.nextia.socioinfonavit.R
 import com.nextia.socioinfonavit.core.exception.Failure
 import com.nextia.socioinfonavit.core.extension.observe
 import com.nextia.socioinfonavit.core.presentation.BaseFragment
+import com.nextia.socioinfonavit.core.presentation.ManuTapListener
 import com.nextia.socioinfonavit.databinding.FragmentHomeBinding
 import com.nextia.socioinfonavit.ui.MainActivity
 import com.nextia.socioinfonavit.ui.adapters.WalletsAdapter
@@ -20,6 +21,10 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
     private val viewModel by viewModels<HomeViewModel>()
     private lateinit var binding : FragmentHomeBinding
     private val walletsAdapter = WalletsAdapter()
+
+    override fun useAppBar(): Boolean = true
+    override fun useDrawer(): Boolean = true
+    override fun setMenuTapListener(): ManuTapListener = { onMenuTapped(it) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,10 +45,6 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
                 viewModel.getWallets()
             }
         }
-
-        showToolbar(true)
-        (baseActivity as? MainActivity)?.setItemMenuTapped {onMenuTapped(it)}
-        isEnabledDrawer(true)
     }
 
     private fun onMenuTapped(item: MainActivity.MenuTags){
