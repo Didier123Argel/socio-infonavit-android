@@ -4,10 +4,7 @@ import com.nextia.socioinfonavit.core.exception.Failure
 import com.nextia.socioinfonavit.core.functional.Either
 import com.nextia.socioinfonavit.core.helpers.Authenticator
 import com.nextia.socioinfonavit.core.plataform.NetworkHandler
-import com.nextia.socioinfonavit.data.dto.BenevitResponse
-import com.nextia.socioinfonavit.data.dto.LoginRequest
-import com.nextia.socioinfonavit.data.dto.UserResponse
-import com.nextia.socioinfonavit.data.dto.Wallet
+import com.nextia.socioinfonavit.data.dto.*
 import com.nextia.socioinfonavit.domain.apis.UserApi
 import com.nextia.socioinfonavit.domain.repositories.UserRepository
 import com.nextia.socioinfonavit.framework.api.ApiRequest
@@ -20,7 +17,7 @@ private val networkHandler: NetworkHandler,
 private val userApi: UserApi,
 private val authenticator: Authenticator
 ): UserRepository, ApiRequest{
-    override fun login(loginRequest: LoginRequest): Either<Failure, UserResponse> {
+    override fun login(loginRequest: UserRequest): Either<Failure, UserResponse> {
         return when (networkHandler.isConnected) {
             true -> {
                 makeRequest(

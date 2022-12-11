@@ -55,7 +55,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     private fun onViewStateChanged(viewState: LoginViewState?) {
         when(viewState) {
             is LoginViewState.EnableLogIn -> enableLogIn(viewState.enable)
-            is LoginViewState.EmailInvalid -> notify(getString(R.string.txt_email_invalid))
+            is LoginViewState.UserInvalid -> notify(getString(R.string.txt_user_invalid))
             is LoginViewState.PasswordEmpty -> notify(getString(R.string.txt_empty_password))
             is LoginViewState.GoToHome -> {
                 navController.navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())

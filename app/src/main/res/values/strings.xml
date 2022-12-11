@@ -22,7 +22,7 @@
     <string name="txt_send">Enviar</string>
     <string name="txt_do_not_have_account">No tengo cuenta.</string>
     <string name="txt_sig_in">Registrarme</string>
-    <string name="txt_email_invalid">Ingrese un correo valido.</string>
+    <string name="txt_user_invalid">Ingrese un usuario valido.</string>
     <string name="txt_empty_password">Ingrese una contraseña.</string>
 
     <!--HOME-->

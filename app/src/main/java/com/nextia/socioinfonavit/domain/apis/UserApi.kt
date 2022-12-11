@@ -1,9 +1,6 @@
 package com.nextia.socioinfonavit.domain.apis
 
-import com.nextia.socioinfonavit.data.dto.BenevitResponse
-import com.nextia.socioinfonavit.data.dto.LoginRequest
-import com.nextia.socioinfonavit.data.dto.UserResponse
-import com.nextia.socioinfonavit.data.dto.Wallet
+import com.nextia.socioinfonavit.data.dto.*
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -11,17 +8,17 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface UserApi {
-    @POST("login/")
+    @POST("v2/member/authentication/")
     fun login(
-        @Body request: LoginRequest
+        @Body request: UserRequest
     ): Call<UserResponse>
 
     @DELETE("logout/")
     fun logout(): Call<Unit>
 
-    @GET("member/wallets/")
+    @GET("v1/member/wallets/")
     fun getWallets(): Call<List<Wallet>>
 
-    @GET("member/landing_benevits/")
+    @GET("v1/member/landing_benevits/")
     fun getBenevits():Call<BenevitResponse>
 }

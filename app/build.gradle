@@ -22,6 +22,19 @@ android {
         setProperty("archivesBaseName", "Socio_Infonavit_v$versionCode($versionName)")
         buildConfigField "String", "API_BASE_URL", "\"\""
 
+        // Read the API key from ./secure.properties into R.string.maps_api_key
+        def secureProps = new Properties()
+        if (file("../secure.properties").exists()) {
+            file("../secure.properties")?.withInputStream { secureProps.load(it) }
+        }
+
+        resValue "string", "asymmetric_encryption", (secureProps.getProperty("ASYMMETRIC_ENCRYPTION") ?: "")
+
+        // To add your API key to this project:
+        // 1. Create a file ./secure.properties in the project root directory
+        // 2. Add these lines, where YOUR_API_KEY is your API key:
+        //        ASYMMETRIC_ENCRYPTION=YOUR_API_KEY
+
     }
 
     buildTypes {

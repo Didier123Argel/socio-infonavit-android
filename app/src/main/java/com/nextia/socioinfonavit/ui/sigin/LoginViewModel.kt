@@ -2,11 +2,9 @@ package com.nextia.socioinfonavit.ui.sigin
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.nextia.socioinfonavit.core.extension.isEmail
 import com.nextia.socioinfonavit.core.helpers.Authenticator
 import com.nextia.socioinfonavit.core.presentation.BaseViewModel
 import com.nextia.socioinfonavit.data.dto.LoginRequest
-import com.nextia.socioinfonavit.data.dto.UserRequest
 import com.nextia.socioinfonavit.data.dto.UserResponse
 import com.nextia.socioinfonavit.domain.usecases.LogInUC
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,13 +18,13 @@ class LoginViewModel @Inject constructor(
     private val _loginViewState = MutableLiveData<LoginViewState>()
     val loginViewState : LiveData<LoginViewState> get() = _loginViewState
 
-    var email: String = ""
+    var user: String = ""
     var password: String = ""
 
     fun onTappedLogin() {
         when {
-            !email.isEmail() -> {
-                _loginViewState.value = LoginViewState.EmailInvalid
+            user.isEmpty() -> {
+                _loginViewState.value = LoginViewState.UserInvalid
                 return
             }
             password.isEmpty() -> {
@@ -36,7 +34,7 @@ class LoginViewModel @Inject constructor(
         }
 
         _loginViewState.value = LoginViewState.ShowProgress(true)
-        logInUC(LoginRequest(UserRequest(email, password))) {
+        logInUC(LoginRequest(user, password)) {
             _loginViewState.value = LoginViewState.ShowProgress(false)
             it.fold(::handleFailure, ::onLoginResponse)
         }
@@ -48,7 +46,7 @@ class LoginViewModel @Inject constructor(
     }
 
     fun onKeysChanged(){
-        val isEnable = email.isNotEmpty() && password.isNotEmpty()
+        val isEnable = user.isNotEmpty() && password.isNotEmpty()
         _loginViewState.value = LoginViewState.EnableLogIn(isEnable)
     }
 

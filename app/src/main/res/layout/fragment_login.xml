@@ -70,7 +70,7 @@
                 android:layout_margin="@dimen/edittext_default_margin_size"
                 android:autofillHints="name"
                 android:hint="@string/txt_email"
-                android:text="@={viewModel.email}"
+                android:text="@={viewModel.user}"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/red"
                 android:textColorHint="@color/gray"

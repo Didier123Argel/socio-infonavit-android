@@ -4,12 +4,14 @@ import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 data class LoginRequest (
-    @SerializedName("user") val userRequest: UserRequest
-    )
+    val user: String,
+    val password: String
+    ) {
+    fun joinKeys() = "$user:$password"
+}
 
 data class UserRequest (
-    @SerializedName("email") val email: String,
-    @SerializedName("password") val password: String
+    @SerializedName("credentials") val credentials: String
 )
 
 
