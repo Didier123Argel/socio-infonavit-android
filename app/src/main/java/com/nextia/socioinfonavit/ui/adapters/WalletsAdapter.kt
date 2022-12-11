@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.nextia.socioinfonavit.R
-import com.nextia.socioinfonavit.data.dto.Wallet
+import com.nextia.socioinfonavit.data.dto.Benevit
 import com.nextia.socioinfonavit.databinding.ItemPurseBinding
 
 class WalletsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    var listItems: MutableList<Wallet> = mutableListOf()
+    var listItems = mutableListOf<Pair<String, List<Benevit>>>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -28,17 +28,11 @@ class WalletsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     private inner class WalletViewHolder(val binding: ItemPurseBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(wallet: Wallet) {
-            binding.tvNamePurse.text = wallet.name
+        fun bind(wallet: Pair<String, List<Benevit>>) {
+            binding.tvNamePurse.text = wallet.first
             val adapter = BenevitsAdapter()
             binding.rvPurchase.adapter = adapter
-            adapter.setData(wallet.benevit)
+            adapter.setData(wallet.second)
         }
-    }
-
-    fun setData(data: List<Wallet>) {
-        listItems.clear()
-        listItems.addAll(data)
-        notifyDataSetChanged()
     }
 }

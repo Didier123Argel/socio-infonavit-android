@@ -6,53 +6,38 @@ import com.nextia.socioinfonavit.core.interactor.UseCase
 import com.nextia.socioinfonavit.core.presentation.BaseViewModel
 import com.nextia.socioinfonavit.data.dto.Benevit
 import com.nextia.socioinfonavit.data.dto.BenevitResponse
-import com.nextia.socioinfonavit.data.dto.Wallet
 import com.nextia.socioinfonavit.domain.usecases.GetBenevitsUC
-import com.nextia.socioinfonavit.domain.usecases.GetWalletsUC
 import com.nextia.socioinfonavit.domain.usecases.LogoutUC
+import com.nextia.socioinfonavit.ui.adapters.TYPE_UNLOCKED
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getWalletsUC: GetWalletsUC,
     private val getBenevitsUC: GetBenevitsUC,
     private val logoutUC: LogoutUC
 ) : BaseViewModel() {
     private val _homeViewState = MutableLiveData<HomeViewState>()
     val homeViewState : LiveData<HomeViewState> get() = _homeViewState
-    val mWallets = mutableListOf<Wallet>()
-
+    val mBenevits = mutableListOf<Pair<String, List<Benevit>>>()
     init {
-        getWallets()
+        getBenevits()
     }
 
-    fun getWallets(){
-        mWallets.clear()
-        _homeViewState.value = HomeViewState.LoadingWallets
-        getWalletsUC(UseCase.None()){
-            it.fold(::handleFailure, ::onWalletsResponse)
-        }
-    }
-
-    private fun onWalletsResponse(wallets: List<Wallet>) {
-        mWallets.addAll(wallets)
+    fun getBenevits() {
+        _homeViewState.value = HomeViewState.LoadingBenevits
         getBenevitsUC(UseCase.None()){
             it.fold(::handleFailure, ::onBenevitsResponse)
         }
     }
 
     private fun onBenevitsResponse(response: BenevitResponse) {
-        for (wallet in mWallets){
-            val benevits = mutableListOf<Benevit>()
-            val unLocked = response.unlocked.filter { it.wallet.id == wallet.id }.map{it.isLocked = false; it}
-            val locked = response.locked.filter { it.wallet.id == wallet.id }.map{it.isLocked = true; it}
-            benevits.addAll(unLocked)
-            benevits.addAll(locked)
-
-            wallet.benevit = benevits
-        }
-
+        val benevitsResponse = response.locked.plus(response.unlocked.onEach { it.typeLocket = TYPE_UNLOCKED }).toMutableList()
+        benevitsResponse.shuffle()
+        mBenevits.addAll(Collections.unmodifiableList(benevitsResponse)
+            .groupBy { it.wallet.name }
+            .map { it.toPair() })
         _homeViewState.value = HomeViewState.UpdateData
     }
 

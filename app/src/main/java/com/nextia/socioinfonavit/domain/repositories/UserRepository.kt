@@ -7,6 +7,5 @@ import com.nextia.socioinfonavit.data.dto.*
 interface UserRepository {
     fun login(loginRequest: UserRequest): Either<Failure, UserResponse>
     fun logout(): Either<Failure, Unit>
-    fun getWallets(): Either<Failure, List<Wallet>>
     fun getBenevits(): Either<Failure, BenevitResponse>
 }

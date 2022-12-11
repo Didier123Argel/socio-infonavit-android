@@ -41,17 +41,6 @@ private val authenticator: Authenticator
         )
     }
 
-    override fun getWallets(): Either<Failure, List<Wallet>> {
-        return makeRequest(
-            networkHandler,
-            userApi.getWallets(),
-            {wallets, _ ->
-                wallets
-            },
-            emptyList()
-        )
-    }
-
     override fun getBenevits(): Either<Failure, BenevitResponse> {
         return makeRequest(
             networkHandler,

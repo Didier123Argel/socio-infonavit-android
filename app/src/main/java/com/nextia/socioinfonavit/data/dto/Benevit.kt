@@ -4,25 +4,26 @@ import com.google.gson.annotations.SerializedName
 
 data class Benevit(
     @SerializedName("id") val id: Long,
+    @SerializedName("name") var name: String,
     @SerializedName("description") var description: String,
     @SerializedName("title") var title: String,
     @SerializedName("instructions") val instructions: String,
-    @SerializedName("expiration_date") val expiration_date: String,
+    @SerializedName("expiration_date") val expirationDate: String,
     @SerializedName("active") val active: Boolean,
-    @SerializedName("primary_color") val primary_color: String,
+    @SerializedName("primary_color") val primaryColor: String,
     @SerializedName("has_coupons") val has_coupons: Boolean,
-    @SerializedName("vector_file_name") val vector_file_name: String,
-    @SerializedName("vector_full_path") var vector_full_path: String,
+    @SerializedName("vector_file_name") val vectorFileName: String,
+    @SerializedName("vector_full_path") var vectorFullPath: String,
     @SerializedName("slug") val slug: String,
     @SerializedName("wallet") val wallet: Wallet,
     @SerializedName("territories") var territories: List<Territories>,
     @SerializedName("ally") val ally: Ally,
-    @SerializedName("is_available_in_all_territories") val is_available_in_all_territories: Boolean,
-    @SerializedName("is_available_in_ecommerce") val is_available_in_ecommerce: Boolean,
-    @SerializedName("is_available_in_physical_store") val is_available_in_physical_store: Boolean
+    @SerializedName("is_available_in_all_territories") val isAvailableInAllTerritories: Boolean,
+    @SerializedName("is_available_in_ecommerce") val isAvailableInEcommerce: Boolean,
+    @SerializedName("is_available_in_physical_store") val isAvailableInPhysicalStore: Boolean
 
     ) {
-    var isLocked: Boolean = false
+    var typeLocket: Int = 0
     var expiration = ""
     var territory = ""
 

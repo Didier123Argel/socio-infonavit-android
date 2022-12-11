@@ -39,10 +39,10 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
             rvWallets.adapter = walletsAdapter
-            walletsAdapter.listItems = viewModel.mWallets
+            walletsAdapter.listItems = viewModel.mBenevits
             splWallets.setOnRefreshListener {
                 splWallets.isRefreshing = false
-                viewModel.getWallets()
+                viewModel.getBenevits()
             }
         }
     }
@@ -71,7 +71,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
     private fun onStateViewChanged(viewState: HomeViewState?) {
         when(viewState) {
             is HomeViewState.Loading -> showLoader(viewState.show)
-            is HomeViewState.LoadingWallets -> {
+            is HomeViewState.LoadingBenevits -> {
                 enableSkeleton()
             }
             is HomeViewState.UpdateData -> {

@@ -16,9 +16,6 @@ interface UserApi {
     @DELETE("logout/")
     fun logout(): Call<Unit>
 
-    @GET("v1/member/wallets/")
-    fun getWallets(): Call<List<Wallet>>
-
     @GET("v1/member/landing_benevits/")
     fun getBenevits():Call<BenevitResponse>
 }

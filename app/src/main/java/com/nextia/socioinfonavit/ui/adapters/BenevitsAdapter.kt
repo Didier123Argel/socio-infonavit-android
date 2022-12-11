@@ -1,5 +1,6 @@
 package com.nextia.socioinfonavit.ui.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -41,15 +42,15 @@ class BenevitsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     override fun getItemViewType(position: Int): Int {
-        return if (listItems[position].isLocked) TYPE_LOCKED else TYPE_UNLOCKED
+        return listItems[position].typeLocket
     }
 
     private inner class UnLockedBenevitViewHolder(val binding: ItemBenevitUnlockedBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(benevit: Benevit) {
-            binding.clHeader.setBackgroundColor(parseColor(binding.root.context, benevit.primary_color))
+            binding.clHeader.setBackgroundColor(parseColor(binding.root.context, benevit.primaryColor))
             benevit.territory = benevit.territories.lastOrNull()?.name?:""
             Glide.with(binding.ivHeader.context).load(benevit.ally.mini_logo_full_path).into(binding.ivHeader)
-            val days = differenceDay(benevit.expiration_date)
+            val days = differenceDay(benevit.expirationDate)
             val expire = binding.root.context.resources.getQuantityString(R.plurals.plural_expire_date, days.toInt(), days)
             benevit.expiration = expire
             binding.benevit = benevit
@@ -60,7 +61,7 @@ class BenevitsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private inner class LockedBenevitViewHolder(val binding: ItemBenevitLockedBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(benevit: Benevit) {
             benevit.territory = benevit.territories.lastOrNull()?.name?:""
-            Glide.with(binding.ivHeaderBenefitUnLocked.context).load(benevit.vector_full_path).into(binding.ivHeaderBenefitUnLocked)
+            Glide.with(binding.ivHeaderBenefitUnLocked.context).load(benevit.vectorFullPath).into(binding.ivHeaderBenefitUnLocked)
             binding.benevit = benevit
 
         }
@@ -74,6 +75,7 @@ class BenevitsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(benevits: List<Benevit>) {
         listItems.clear()
         listItems.addAll(benevits)
