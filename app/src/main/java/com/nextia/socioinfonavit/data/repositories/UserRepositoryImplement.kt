@@ -8,6 +8,7 @@ import com.nextia.socioinfonavit.data.dto.*
 import com.nextia.socioinfonavit.domain.apis.UserApi
 import com.nextia.socioinfonavit.domain.repositories.UserRepository
 import com.nextia.socioinfonavit.framework.api.ApiRequest
+import okhttp3.Headers
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -18,63 +19,50 @@ private val userApi: UserApi,
 private val authenticator: Authenticator
 ): UserRepository, ApiRequest{
     override fun login(loginRequest: UserRequest): Either<Failure, UserResponse> {
-        return when (networkHandler.isConnected) {
-            true -> {
-                makeRequest(
-                    userApi.login(loginRequest),
-                    {userResponse, headers ->
-                        authenticator.setToken(headers["Authorization"] as String, "")
-                        userResponse
-                    },
-                    UserResponse.empty()
-                )
-            }
-            false, null -> Either.Left(Failure.NetworkConnection)
-        }
+        return makeRequest(
+            networkHandler,
+            userApi.login(loginRequest),
+            {userResponse, headers ->
+                authenticator.setToken(headers.getAuthorization(), "")
+                userResponse
+            },
+            UserResponse.empty()
+        )
     }
 
     override fun logout(): Either<Failure, Unit> {
-        return when (networkHandler.isConnected) {
-            true -> {
-                makeRequest(
-                    userApi.logout(),
-                    {_ ->
-                        authenticator.clear()
-                    },
-                    Unit
-                )
-            }
-            false, null -> Either.Left(Failure.NetworkConnection)
-        }
+        return makeRequest(
+            networkHandler,
+            userApi.logout(),
+            { _, _ ->
+                authenticator.clear()
+            },
+            Unit
+        )
     }
 
     override fun getWallets(): Either<Failure, List<Wallet>> {
-        return when (networkHandler.isConnected) {
-            true -> {
-                makeRequest(
-                    userApi.getWallets(),
-                    {wallets ->
-                        wallets
-                    },
-                    emptyList()
-                )
-            }
-            false, null -> Either.Left(Failure.NetworkConnection)
-        }
+        return makeRequest(
+            networkHandler,
+            userApi.getWallets(),
+            {wallets, _ ->
+                wallets
+            },
+            emptyList()
+        )
     }
 
     override fun getBenevits(): Either<Failure, BenevitResponse> {
-        return when (networkHandler.isConnected) {
-            true -> {
-                makeRequest(
-                    userApi.getBenevits(),
-                    { benevits ->
-                        benevits
-                    },
-                    BenevitResponse.empty()
-                )
-            }
-            false, null -> Either.Left(Failure.NetworkConnection)
-        }
+        return makeRequest(
+            networkHandler,
+            userApi.getBenevits(),
+            { benevits, _ ->
+                benevits
+            },
+            BenevitResponse.empty()
+        )
     }
+
 }
+
+fun Headers.getAuthorization(): String = this["Authorization"] as String

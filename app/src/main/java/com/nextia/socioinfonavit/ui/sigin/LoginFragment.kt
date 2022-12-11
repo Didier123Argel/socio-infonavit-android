@@ -39,7 +39,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                 hideKeyboard()
                 this@LoginFragment.viewModel.onTappedLogin()
             }
-            etEmail.addTextChangedListener { this@LoginFragment.viewModel.onKeysChanged() }
+            etUser.addTextChangedListener { this@LoginFragment.viewModel.onKeysChanged() }
             etPassword.addTextChangedListener { this@LoginFragment.viewModel.onKeysChanged() }
             etPassword.setOnEditorActionListener { _, actionId, _ ->
                 val result: Int = actionId and EditorInfo.IME_MASK_ACTION

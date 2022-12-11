@@ -64,12 +64,12 @@
 
 
             <EditText
-                android:id="@+id/etEmail"
+                android:id="@+id/etUser"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/edittext_default_margin_size"
                 android:autofillHints="name"
-                android:hint="@string/txt_email"
+                android:hint="@string/txt_user"
                 android:text="@={viewModel.user}"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/red"
@@ -92,7 +92,7 @@
                 android:textColorHint="@color/gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etEmail" />
+                app:layout_constraintTop_toBottomOf="@id/etUser" />
 
             <TextView
                 android:id="@+id/tvForgotPassword"

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--APP NAME-->
-    <string name="app_name">Socio Infonavit Android</string>
+    <string name="app_name">Socio Infonavit</string>
 
     <!--DIALOG-->
     <string name="option_accept">Aceptar</string>
     <string name="option_cancel">Cancelar</string>
-    <string name="title_error_logout">Usuario y contraseña incorrectos</string>
+    <string name="title_error_logout">Usuario o contraseña incorrectos</string>
     <string name="message_error_logout">Ingrese nuevamente</string>
     <string name="confirm_dialog_logout">¿Esta seguro que desea cerrar sesión?</string>
 
@@ -16,7 +16,7 @@
     <string name="error_connection">Error de conexión</string>
 
     <!--LOGIN-->
-    <string name="txt_email">Correo</string>
+    <string name="txt_user">Usuario</string>
     <string name="txt_password">Contraseña</string>
     <string name="txt_forgot_my_password">Olvide mi contraseña</string>
     <string name="txt_send">Enviar</string>
