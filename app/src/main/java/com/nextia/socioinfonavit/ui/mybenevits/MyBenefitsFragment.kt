@@ -50,6 +50,7 @@ class MyBenefitsFragment : BaseFragment(R.layout.fragment_my_benefits) {
             splMyBenefits.setOnRefreshListener {
                 splMyBenefits.isRefreshing = false
                 this@MyBenefitsFragment.viewModel.getBenevits()
+                binding.viewPlaceHolderMyBenefits.isVisible = false
             }
         }
     }
