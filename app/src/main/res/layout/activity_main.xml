@@ -17,8 +17,8 @@
             android:background="@color/red">
 
             <include
-                android:id="@+id/toolBar"
-                layout="@layout/toolbar_main" />
+                android:id="@+id/mainAppBar"
+                layout="@layout/appbar_home" />
 
 
             <androidx.fragment.app.FragmentContainerView

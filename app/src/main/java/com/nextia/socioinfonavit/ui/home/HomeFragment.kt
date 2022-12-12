@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import com.nextia.socioinfonavit.R
 import com.nextia.socioinfonavit.core.exception.Failure
 import com.nextia.socioinfonavit.core.extension.observe
+import com.nextia.socioinfonavit.core.presentation.BaseActivity
 import com.nextia.socioinfonavit.core.presentation.BaseFragment
 import com.nextia.socioinfonavit.core.presentation.ManuTapListener
 import com.nextia.socioinfonavit.databinding.FragmentHomeBinding
@@ -26,6 +27,15 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
     override fun useAppBar(): Boolean = true
     override fun useDrawer(): Boolean = true
+    override fun setToolbar(): BaseActivity.ToolbarContent {
+        return BaseActivity.ToolbarContent(
+            contentToolbar = R.layout.container_toolbar_home,
+            navigationIcon = R.drawable.ic_menu,
+            onClickNavigationIcon = {
+                baseActivity.openDrawer()
+            }
+        )
+    }
     override fun setMenuTapListener(): ManuTapListener = { onMenuTapped(it) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +72,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
                 }
                 true
             }
+            this@HomeFragment.viewModel.getBenevits()
         }
     }
 
@@ -70,6 +81,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
             MainActivity.MenuTags.ITEM_LOGOUT -> {
                 showDialogLogout()
             }
+            else -> {}
         }
     }
 

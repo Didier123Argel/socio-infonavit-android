@@ -42,4 +42,12 @@
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/myBenefitsFragment"
+        android:name="com.nextia.socioinfonavit.ui.mybenevits.MyBenefitsFragment"
+        android:label="MyBenefitsFragment"
+        tools:layout="@layout/fragment_my_benefits"/>
+    <action
+        android:id="@+id/action_global_myBenefitsFragment"
+        app:destination="@id/myBenefitsFragment"/>
 </navigation>

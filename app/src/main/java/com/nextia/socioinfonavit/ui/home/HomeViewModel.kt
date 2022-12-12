@@ -27,10 +27,6 @@ class HomeViewModel @Inject constructor(
     var searchText = ""
     private var searched = false
 
-    init {
-        getBenevits()
-    }
-
     fun getBenevits() {
         searched = false
         _homeViewState.value = HomeViewState.LoadingBenevits
