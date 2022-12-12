@@ -114,6 +114,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
             }
 
             is HomeViewState.SuccessLogout ->{
+                notify(R.string.logout_success)
                 navController.navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
             }
             else -> {}

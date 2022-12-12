@@ -10,6 +10,7 @@
     <string name="message_error_logout">Ingrese nuevamente</string>
     <string name="confirm_dialog_logout">¿Esta seguro que desea cerrar sesión?</string>
     <string name="error_connection">Error de conexión</string>
+    <string name="logout_success">Ha cerrado sesión correctamente.</string>
 
     <!--MAIN-->
     <string name="txt_welcome">Bienvenido</string>

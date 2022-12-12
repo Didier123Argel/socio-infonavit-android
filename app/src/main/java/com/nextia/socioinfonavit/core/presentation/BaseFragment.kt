@@ -3,6 +3,7 @@ package com.nextia.socioinfonavit.core.presentation
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.LayoutRes
+import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
@@ -62,6 +63,12 @@ abstract class BaseFragment(@LayoutRes val layoutId: Int) : Fragment(layoutId), 
             getString(R.string.option_accept),
             positiveClicked = {}
         )
+    }
+
+    internal fun notify(@StringRes message: Int){
+        Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT)
+            .apply { setBackgroundTint(context.getColor(
+                R.color.red)) }.show()
     }
 
     internal fun notify(message: String){
