@@ -16,7 +16,10 @@
             tools:text="Casa"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="@dimen/wallet_header_default_margin_size"
+            android:layout_marginTop="@dimen/wallet_header_default_margin_size_top"
+            android:layout_marginStart="@dimen/wallet_header_default_margin_size"
+            android:layout_marginEnd="@dimen/wallet_header_default_margin_size"
+            android:layout_marginBottom="@dimen/wallet_header_default_margin_size"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 

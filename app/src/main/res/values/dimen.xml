@@ -9,5 +9,6 @@
     <dimen name="purse_default_margin_size">13sp</dimen>
     <dimen name="btn_item_default_margin_size">5sp</dimen>
     <dimen name="wallet_header_default_margin_size">18sp</dimen>
+    <dimen name="wallet_header_default_margin_size_top">8sp</dimen>
 
 </resources>
