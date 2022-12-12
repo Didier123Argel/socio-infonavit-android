@@ -5,6 +5,7 @@ import com.nextia.socioinfonavit.core.functional.Either
 import com.nextia.socioinfonavit.core.helpers.Authenticator
 import com.nextia.socioinfonavit.core.plataform.NetworkHandler
 import com.nextia.socioinfonavit.data.dto.*
+import com.nextia.socioinfonavit.domain.apis.BenefitsApi
 import com.nextia.socioinfonavit.domain.apis.UserApi
 import com.nextia.socioinfonavit.domain.repositories.UserRepository
 import com.nextia.socioinfonavit.framework.api.ApiRequest
@@ -16,6 +17,7 @@ import javax.inject.Singleton
 class UserRepositoryImplement @Inject constructor(
 private val networkHandler: NetworkHandler,
 private val userApi: UserApi,
+private val benefitsApi: BenefitsApi,
 private val authenticator: Authenticator
 ): UserRepository, ApiRequest{
     override fun login(loginRequest: UserRequest): Either<Failure, UserResponse> {
@@ -38,7 +40,7 @@ private val authenticator: Authenticator
     override fun getBenevits(): Either<Failure, BenevitResponse> {
         return makeRequest(
             networkHandler,
-            userApi.getBenevits(),
+            benefitsApi.getBenevits(),
             { benevits, _ ->
                 benevits
             },
@@ -49,7 +51,7 @@ private val authenticator: Authenticator
     override fun searchBenevits(searchRequest: SearchRequest): Either<Failure, List<Benevit>> {
         return makeRequest(
             networkHandler,
-            userApi.search(searchRequest),
+            benefitsApi.search(searchRequest),
             { benevits, _ ->
                 benevits
             },

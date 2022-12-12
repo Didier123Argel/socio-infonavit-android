@@ -4,7 +4,6 @@ import com.nextia.socioinfonavit.core.exception.Failure
 import com.nextia.socioinfonavit.core.functional.Either
 import com.nextia.socioinfonavit.core.interactor.UseCase
 import com.nextia.socioinfonavit.data.dto.BenevitResponse
-import com.nextia.socioinfonavit.data.dto.Wallet
 import com.nextia.socioinfonavit.domain.repositories.UserRepository
 import javax.inject.Inject
 

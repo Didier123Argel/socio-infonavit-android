@@ -1,6 +1,7 @@
 package com.nextia.socioinfonavit.core.di
 
 import com.nextia.socioinfonavit.BuildConfig
+import com.nextia.socioinfonavit.domain.apis.BenefitsApi
 import com.nextia.socioinfonavit.domain.apis.UserApi
 import com.nextia.socioinfonavit.framework.api.ApiProvider
 import com.nextia.socioinfonavit.framework.api.AuthorizationInterceptor
@@ -23,5 +24,10 @@ object ApiModule {
     @Singleton
     fun providesUserApi(apiProvider: ApiProvider) : UserApi =
         apiProvider.getEndpoint(UserApi::class.java)
+
+    @Provides
+    @Singleton
+    fun providesBenefitsApi(apiProvider: ApiProvider) : BenefitsApi =
+        apiProvider.getEndpoint(BenefitsApi::class.java)
 
 }

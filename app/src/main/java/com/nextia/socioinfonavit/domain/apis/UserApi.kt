@@ -11,12 +11,4 @@ interface UserApi {
     fun login(
         @Body request: UserRequest
     ): Call<UserResponse>
-
-    @GET("v1/member/landing_benevits/")
-    fun getBenevits():Call<BenevitResponse>
-
-    @POST("v1/member/member_benevits/search/")
-    fun search(
-        @Body request: SearchRequest
-    ):Call<List<Benevit>>
 }
