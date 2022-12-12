@@ -5,4 +5,5 @@ sealed class HomeViewState {
     object LoadingBenevits : HomeViewState()
     class Loading(val show: Boolean) : HomeViewState()
     class SuccessLogout(val success: Unit) : HomeViewState()
+    class ShowPlaceHolder(val show: Boolean) : HomeViewState()
 }

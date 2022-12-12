@@ -18,14 +18,29 @@ import java.lang.Exception
 const val TYPE_LOCKED = 0
 const val TYPE_UNLOCKED = 1
 class BenevitsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    var listItems: MutableList<Benevit> = mutableListOf()
+    private var listItems: MutableList<Benevit> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return when(viewType) {
-            TYPE_LOCKED -> LockedBenevitViewHolder(DataBindingUtil.inflate(layoutInflater, R.layout.item_benevit_locked,parent, false))
-            TYPE_UNLOCKED -> UnLockedBenevitViewHolder(DataBindingUtil.inflate(layoutInflater, R.layout.item_benevit_unlocked,parent, false))
-            else -> LockedBenevitViewHolder(DataBindingUtil.inflate(layoutInflater, R.layout.item_benevit_locked,parent, false))
+            TYPE_LOCKED -> LockedBenevitViewHolder(DataBindingUtil.inflate(
+                layoutInflater,
+                R.layout.item_benevit_locked,
+                parent,
+                false
+            ))
+            TYPE_UNLOCKED -> UnLockedBenevitViewHolder(DataBindingUtil.inflate(
+                layoutInflater,
+                R.layout.item_benevit_unlocked,
+                parent,
+                false
+            ))
+            else -> LockedBenevitViewHolder(DataBindingUtil.inflate(
+                layoutInflater,
+                R.layout.item_benevit_locked,
+                parent,
+                false
+            ))
         }
     }
 
@@ -40,28 +55,43 @@ class BenevitsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return listItems.size
     }
 
-
     override fun getItemViewType(position: Int): Int {
-        return listItems[position].typeLocket
+        return if (listItems[position].unlocked) TYPE_UNLOCKED else TYPE_LOCKED
     }
 
-    private inner class UnLockedBenevitViewHolder(val binding: ItemBenevitUnlockedBinding): RecyclerView.ViewHolder(binding.root) {
+    private inner class UnLockedBenevitViewHolder(val binding: ItemBenevitUnlockedBinding):
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(benevit: Benevit) {
-            binding.clHeader.setBackgroundColor(parseColor(binding.root.context, benevit.primaryColor))
+
+            binding.clHeader.setBackgroundColor(parseColor(
+                binding.root.context,
+                benevit.primaryColor
+            ))
             benevit.territory = benevit.territories.lastOrNull()?.name?:""
-            Glide.with(binding.ivHeader.context).load(benevit.ally.mini_logo_full_path).into(binding.ivHeader)
+
+            Glide
+                .with(binding.ivHeader.context)
+                .load(benevit.ally.mini_logo_full_path)
+                .into(binding.ivHeader)
+
             val days = differenceDay(benevit.expirationDate)
-            val expire = binding.root.context.resources.getQuantityString(R.plurals.plural_expire_date, days.toInt(), days)
-            benevit.expiration = expire
+            benevit.expiration = binding.root.context.resources.getQuantityString(
+                R.plurals.plural_expire_date,
+                days.toInt(),
+                days
+            )
             binding.benevit = benevit
 
         }
     }
 
-    private inner class LockedBenevitViewHolder(val binding: ItemBenevitLockedBinding): RecyclerView.ViewHolder(binding.root) {
+    private inner class LockedBenevitViewHolder(val binding: ItemBenevitLockedBinding):
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(benevit: Benevit) {
             benevit.territory = benevit.territories.lastOrNull()?.name?:""
-            Glide.with(binding.ivHeaderBenefitUnLocked.context).load(benevit.vectorFullPath).into(binding.ivHeaderBenefitUnLocked)
+            Glide.with(binding.ivHeaderBenefitUnLocked.context)
+                .load(benevit.vectorFullPath)
+                .into(binding.ivHeaderBenefitUnLocked)
             binding.benevit = benevit
 
         }

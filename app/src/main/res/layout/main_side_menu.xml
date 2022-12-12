@@ -19,7 +19,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:contentDescription="@string/logout"
+                android:contentDescription="@string/txt_logout"
                 android:layout_marginEnd="@dimen/logo_default_margin_size"
                 android:layout_marginTop="@dimen/logo_default_margin_start_size"
                 app:layout_constraintStart_toStartOf="parent"
@@ -39,11 +39,46 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/sideBarUserPicture"/>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/llContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="26dp"
+                android:padding="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvWelcome">
+
+                <TextView
+                    android:id="@+id/tvMyBenevits"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:text="@string/txt_my_benevits"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintTop_toTopOf="@id/tvMyBenevits"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tvMyBenevits"
+                    app:layout_constraintBottom_toBottomOf="@id/tvMyBenevits"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <TextView
                 android:id="@+id/tvLogOut"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/logout"
+                android:text="@string/txt_logout"
                 android:layout_marginStart="20dp"
                 android:textColor="@color/white"
                 android:textSize="16sp"

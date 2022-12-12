@@ -20,9 +20,11 @@ data class Benevit(
     @SerializedName("ally") val ally: Ally,
     @SerializedName("is_available_in_all_territories") val isAvailableInAllTerritories: Boolean,
     @SerializedName("is_available_in_ecommerce") val isAvailableInEcommerce: Boolean,
-    @SerializedName("is_available_in_physical_store") val isAvailableInPhysicalStore: Boolean
+    @SerializedName("is_available_in_physical_store") val isAvailableInPhysicalStore: Boolean,
+    @SerializedName("unlocked") var unlocked: Boolean //Only available in search
 
-    ) {
+
+) {
     var typeLocket: Int = 0
     var expiration = ""
     var territory = ""

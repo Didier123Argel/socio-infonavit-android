@@ -9,11 +9,12 @@
     <string name="title_error_logout">Usuario o contraseña incorrectos</string>
     <string name="message_error_logout">Ingrese nuevamente</string>
     <string name="confirm_dialog_logout">¿Esta seguro que desea cerrar sesión?</string>
+    <string name="error_connection">Error de conexión</string>
 
     <!--MAIN-->
     <string name="txt_welcome">Bienvenido</string>
-    <string name="logout">Cerrar sesión</string>
-    <string name="error_connection">Error de conexión</string>
+    <string name="txt_my_benevits">Mis Benevits</string>
+    <string name="txt_logout">Cerrar sesión</string>
 
     <!--LOGIN-->
     <string name="txt_user">Usuario</string>
@@ -27,6 +28,8 @@
 
     <!--HOME-->
     <string name="txt_i_want">LO QUIERO</string>
+    <string name="txt_place_holder_no_benefits">No se encontraron benevits.</string>
+    <string name="txt_search_title">Buscar beneficios</string>
 
     <!--DRAWER-->
     <string name="drawer_opened" translatable="false">Opened</string>
@@ -35,6 +38,7 @@
     <!--DESCRIPTIONS-->
     <string name="description_logo_splash">Logo Splash</string>
     <string name="description_logo_login">Logo login</string>
+    <string name="description_place_holder">Place Holder</string>
     <string name="description_your_benevit">Your Benevit</string>
     <string name="description_shimmer">Shimmer</string>
 

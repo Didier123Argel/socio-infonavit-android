@@ -1,10 +1,8 @@
-package com.nextia.socioinfonavit.ui.home
+package com.nextia.socioinfonavit.ui.mybenevits
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
-import android.view.inputmethod.EditorInfo
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.nextia.socioinfonavit.R
 import com.nextia.socioinfonavit.core.exception.Failure
@@ -18,9 +16,9 @@ import com.nextia.socioinfonavit.ui.customdialogs.CustomAlertDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment(R.layout.fragment_home) {
+class MyBenefitsFragment : BaseFragment(R.layout.fragment_home) {
 
-    private val viewModel by viewModels<HomeViewModel>()
+    private val viewModel by viewModels<MyBenefitsViewModel>()
     private lateinit var binding : FragmentHomeBinding
     private val walletsAdapter = WalletsAdapter()
 
@@ -32,7 +30,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         super.onCreate(savedInstanceState)
         viewModel.apply {
             observe(homeViewState, ::onStateViewChanged)
-            observe(failure, this@HomeFragment::handleFailure)
+            observe(failure, this@MyBenefitsFragment::handleFailure)
         }
     }
 
@@ -40,27 +38,11 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         binding = FragmentHomeBinding.bind(view)
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
-            viewModel = this@HomeFragment.viewModel
             rvWallets.adapter = walletsAdapter
-            walletsAdapter.listItems = this@HomeFragment.viewModel.mBenevits
+            walletsAdapter.listItems = this@MyBenefitsFragment.viewModel.mBenevits
             splWallets.setOnRefreshListener {
-                benefitsSearch.text?.clear()
-                hideKeyboard()
                 splWallets.isRefreshing = false
-                this@HomeFragment.viewModel.getBenevits()
-            }
-            benefitSearchText.setEndIconOnClickListener {
-                benefitsSearch.text?.clear()
-                hideKeyboard()
-                this@HomeFragment.viewModel.onTappedReset()
-            }
-            benefitsSearch.setOnEditorActionListener { _, actionId, _ ->
-                val result: Int = actionId and EditorInfo.IME_MASK_ACTION
-                if (result == EditorInfo.IME_ACTION_SEARCH){
-                    hideKeyboard()
-                    this@HomeFragment.viewModel.onTappedSearch()
-                }
-                true
+                this@MyBenefitsFragment.viewModel.getBenevits()
             }
         }
     }
@@ -86,23 +68,19 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun onStateViewChanged(viewState: HomeViewState?) {
+    private fun onStateViewChanged(viewState: MyBenefitsViewState?) {
         when(viewState) {
-            is HomeViewState.ShowPlaceHolder -> {
-                binding.viewPlaceHolder.isVisible = viewState.show
-            }
-            is HomeViewState.Loading -> showLoader(viewState.show)
-            is HomeViewState.LoadingBenevits -> {
-                binding.viewPlaceHolder.isVisible = false
+            is MyBenefitsViewState.Loading -> showLoader(viewState.show)
+            is MyBenefitsViewState.LoadingBenevits -> {
                 enableSkeleton()
             }
-            is HomeViewState.UpdateData -> {
+            is MyBenefitsViewState.UpdateData -> {
                 disableSkeleton()
                 walletsAdapter.notifyDataSetChanged()
             }
 
-            is HomeViewState.SuccessLogout ->{
-                navController.navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
+            is MyBenefitsViewState.SuccessLogout ->{
+                //navController.navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
             }
             else -> {}
         }

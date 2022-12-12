@@ -13,7 +13,12 @@ class WalletsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = DataBindingUtil.inflate<ItemPurseBinding>(layoutInflater, R.layout.item_purse,parent, false)
+        val binding = DataBindingUtil.inflate<ItemPurseBinding>(
+            layoutInflater,
+            R.layout.item_purse,
+            parent,
+            false
+        )
         return WalletViewHolder(binding)
     }
 
@@ -27,7 +32,9 @@ class WalletsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return listItems.size
     }
 
-    private inner class WalletViewHolder(val binding: ItemPurseBinding): RecyclerView.ViewHolder(binding.root) {
+    private inner class WalletViewHolder(val binding: ItemPurseBinding):
+        RecyclerView.ViewHolder(binding.root) {
+
         fun bind(wallet: Pair<String, List<Benevit>>) {
             binding.tvNamePurse.text = wallet.first
             val adapter = BenevitsAdapter()

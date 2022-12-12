@@ -46,6 +46,16 @@ private val authenticator: Authenticator
         )
     }
 
+    override fun searchBenevits(searchRequest: SearchRequest): Either<Failure, List<Benevit>> {
+        return makeRequest(
+            networkHandler,
+            userApi.search(searchRequest),
+            { benevits, _ ->
+                benevits
+            },
+            emptyList()
+        )
+    }
 }
 
 fun Headers.getAuthorization(): String = this["Authorization"] as String

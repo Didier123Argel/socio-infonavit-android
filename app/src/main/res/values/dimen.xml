@@ -10,5 +10,8 @@
     <dimen name="btn_item_default_margin_size">5sp</dimen>
     <dimen name="wallet_header_default_margin_size">18sp</dimen>
     <dimen name="wallet_header_default_margin_size_top">8sp</dimen>
+    <dimen name="normal_text_size">16sp</dimen>
+    <dimen name="normal_text_size_big">22sp</dimen>
+    <dimen name="default_button_corner_radius">8dp</dimen>
 
 </resources>
