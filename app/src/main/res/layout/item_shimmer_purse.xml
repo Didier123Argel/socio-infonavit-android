@@ -3,14 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
         android:id="@+id/tvNamePurse"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        tools:text="Purse"
         android:background="@color/white"
         android:layout_margin="@dimen/wallet_header_default_margin_size"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,7 +19,7 @@
         android:layout_height="0dp"
         android:fillViewport="true"
         android:orientation="horizontal"
-        app:layout_constraintHeight_percent=".78"
+        app:layout_constraintDimensionRatio="1:.67"
         android:layout_margin="@dimen/purse_default_margin_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,20 +27,25 @@
         app:layout_constraintTop_toBottomOf="@id/tvNamePurse">
         <LinearLayout
             android:id="@+id/rvPurchase"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:weightSum="2"
+            android:baselineAligned="false">
 
             <include
                 android:id="@+id/shimmerOne"
-                layout="@layout/item_shimmer_benevit_locked"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/shimmerTwo"/>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                layout="@layout/item_shimmer_benevit_locked" />
 
             <include
                 android:id="@+id/shimmerTwo"
-                layout="@layout/item_shimmer_benevit_locked"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/shimmerOne"/>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                layout="@layout/item_shimmer_benevit_locked" />
 
         </LinearLayout>
 

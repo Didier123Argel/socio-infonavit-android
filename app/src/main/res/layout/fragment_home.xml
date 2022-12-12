@@ -14,6 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:elevation="40dp"
+            tools:visibility="gone"
             android:orientation="vertical">
 
             <androidx.core.widget.NestedScrollView
@@ -38,6 +39,7 @@
             android:id="@+id/splWallets"
             android:shadowColor="@color/red"
             android:visibility="gone"
+            tools:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -48,6 +50,7 @@
                 android:orientation="vertical"
                 android:visibility="gone"
                 tools:listitem="@layout/item_purse"
+                tools:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
