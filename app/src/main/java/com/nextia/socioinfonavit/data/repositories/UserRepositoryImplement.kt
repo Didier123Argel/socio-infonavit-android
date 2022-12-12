@@ -31,14 +31,8 @@ private val authenticator: Authenticator
     }
 
     override fun logout(): Either<Failure, Unit> {
-        return makeRequest(
-            networkHandler,
-            userApi.logout(),
-            { _, _ ->
-                authenticator.clear()
-            },
-            Unit
-        )
+        authenticator.clear()
+        return Either.Right(Unit)
     }
 
     override fun getBenevits(): Either<Failure, BenevitResponse> {
