@@ -53,9 +53,9 @@
                     android:layout_height="wrap_content"
                     tools:text="Hoteles misión"
                     android:textColor="@color/black"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     android:text="@={benevit.title}"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginStart="@dimen/purse_default_margin_size"
                     android:layout_marginEnd="@dimen/purse_default_margin_size"
                     app:layout_constraintTop_toBottomOf="@id/clHeader"/>
@@ -77,15 +77,18 @@
                     android:id="@+id/tvRegion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="Todo México"
-                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:text="@={benevit.territory}"
                     android:textColor="@color/black"
                     android:textSize="12sp"
-                    android:text="@={benevit.territory}"
-                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
                     android:layout_marginStart="@dimen/purse_default_margin_size"
                     android:layout_marginEnd="@dimen/purse_default_margin_size"
-                    app:layout_constraintTop_toBottomOf="@id/tvDescriptionBenevit"/>
+                    app:layout_constraintVertical_bias="0"
+                    app:layout_constraintBottom_toTopOf="@+id/tvLimitDateBenevit"
+                    app:layout_constraintTop_toBottomOf="@id/tvDescriptionBenevit"
+                    tools:layout_editor_absoluteX="13dp"
+                    tools:text="Todo México" />
 
                 <TextView
                     android:id="@+id/tvLimitDateBenevit"
@@ -100,7 +103,6 @@
                     android:layout_marginEnd="@dimen/purse_default_margin_size"
                     android:text="@={benevit.expiration}"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvRegion"
                     tools:layout_editor_absoluteX="8dp"
                     tools:text="Vence en: 342 dias" />
 
